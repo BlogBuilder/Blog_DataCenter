@@ -11,10 +11,9 @@
             <!-- START Background Caption-->
             <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
                 <h2 class="semi-bold text-white">
-                    Pages make it easy to enjoy what matters the most in the life</h2>
+                    落苏&mdash;博客后台管理系统</h2>
                 <p class="small">
-                    images Displayed are solely for representation purposes only, All work copyright of respective
-                    owner, otherwise © 2013-2014 REVOX.
+                    你懂的越多，懂你的越少。
                 </p>
             </div>
             <!-- END Background Caption-->
@@ -31,7 +30,8 @@
                     <div class="form-group form-group-default">
                         <label>用户名</label>
                         <div class="controls">
-                            <input type="email" name="username" placeholder="请输入管理员账号" class="form-control" required>
+                            <input type="text" name="username" placeholder="请输入管理员账号" class="form-control"
+                                   v-model="loginInfo.username" required>
                         </div>
                     </div>
                     <!-- END Form Control-->
@@ -39,7 +39,8 @@
                     <div class="form-group form-group-default">
                         <label>密码</label>
                         <div class="controls">
-                            <input type="password" class="form-control" name="password" placeholder="请输入管理员密码"
+                            <input type="password" class="form-control" name="password" v-model="loginInfo.password"
+                                   placeholder="请输入管理员密码"
                                    required>
                         </div>
                     </div>
@@ -47,7 +48,7 @@
                     <div class="row">
                         <div class="col-md-6 no-padding sm-p-l-10">
                             <div class="checkbox ">
-                                <input type="checkbox" value="1" id="checkbox1">
+                                <input type="checkbox" id="checkbox1" v-model="loginInfo.remember">
                                 <label for="checkbox1">记住密码</label>
                             </div>
                         </div>
@@ -73,13 +74,69 @@
     </div>
 </template>
 <script type="es6">
+    const jwt = require('jsonwebtoken');
+    const config = require('../global/config');
+    const store = require('store');
     module.exports = {
+        data(){
+            return {
+                loginInfo: {
+                    username: "",
+                    password: "",
+                    remember: false
+                }
+            }
+        },
         mounted(){
+            let me = this;
             $('#form-login').validate();
+            me.$nextTick(() => {
+                me.fetchLocal();
+            })
         },
         methods: {
             login(){
                 let me = this;
+                let token = jwt.sign(me.loginInfo, config.publicKey, {
+                    expiresIn: 40
+                });
+                me.$http.post('/api/v1.0/login/admin', {
+                    loginInfo: token
+                }).then(response => {
+                    let data = response.data;
+                    codeState(data.code, {
+                        200(){
+                            if (me.loginInfo.remember) {
+                                let loginLocal = jwt.sign(me.loginInfo, config.localKey, {
+                                    expiresIn: 10 * 24 * 60 * 60
+                                });
+                                store.set("loginInfo", loginLocal);
+                            } else {
+                                store.remove('loginInfo');
+                            }
+                            window.location.href = "/";
+                        },
+                        506: "登陆密码错误！",
+                        503: "当前用户不存在"
+                    })
+                }, response => {
+                    serviceError(response);
+                })
+            },
+            fetchLocal(){
+                let me = this;
+                let loginInfo = store.get("loginInfo");
+                if (loginInfo) {
+                    jwt.verify(loginInfo, config.localKey, (err, decoded) => {
+                        if (!err) {
+                            me.loginInfo = {
+                                username: decoded.username,
+                                password: decoded.password,
+                                remember: decoded.remember
+                            };
+                        }
+                    });
+                }
             }
         }
     }
