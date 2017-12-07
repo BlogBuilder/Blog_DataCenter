@@ -1,0 +1,13 @@
+{
+  "code": 200,
+  "token": "",
+  "data": {
+    "state": 1,
+    "result": {
+      "name": "瞿**",
+      "card_type": 0,
+      "card_num": "320************414"
+    },
+    "update_time": "2017-12-10 23:00:32"
+  }
+}
