@@ -3,7 +3,6 @@
  */
 
 "use strict";
-import avatar from '../img/notification.png';
 
 let alert = function (message) {
     $('body').pgNotification({
@@ -19,6 +18,36 @@ let error = function (message) {
         "style": "flip",
         "type": "danger"
     }).show();
+};
+
+let confirm = function (message, success_fn, error_fn) {
+    $('#confirm_msg').html(message ? message : "是否进行当前操作？");
+    $('#confirm_success').off('click').on('click', function () {
+        if (typeof success_fn === "function") {
+            success_fn();
+        } else {
+            if (typeof success_fn === "string") {
+                alert(success_fn);
+            } else {
+                alert("操作成功");
+            }
+        }
+        $('#confirmModal').modal("hide");
+
+    });
+    $('#confirm_error').off('click').on('click', function () {
+        if (typeof error_fn === "function") {
+            error_fn();
+        } else {
+            if (typeof error_fn === "string") {
+                error(error_fn);
+            }
+        }
+        $('#confirmModal').modal("hide");
+    });
+    $('#confirmModal').modal("show");
+
+
 };
 
 let codeState = (code, opt) => {
@@ -87,5 +116,6 @@ let serviceError = function () {
 };
 window.alert = alert;
 window.error = error;
+window.confirm = confirm;
 window.codeState = codeState;
 window.serviceError = serviceError;

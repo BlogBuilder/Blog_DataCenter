@@ -9,82 +9,85 @@
         <!-- END SIDEBAR MENU TOP TRAY CONTENT-->
         <!-- BEGIN SIDEBAR MENU HEADER-->
         <div class="sidebar-header">
-            <img src="../assets/images/logo_blue.png" alt="logo" class="brand" data-src="../assets/images/logo_blue.png"
-                 data-src-retina="../assets/images/logo_blue_2x.png" width="78" height="22">
+            <img src="../assets/images/logo_d2.png" alt="logo" class="brand" data-src="../assets/images/logo_d2.png"
+                 width="78" height="22">
         </div>
         <!-- END SIDEBAR MENU HEADER-->
         <!-- START SIDEBAR MENU -->
         <div class="sidebar-menu">
             <!-- BEGIN SIDEBAR MENU ITEMS-->
-            <ul class="menu-items m-t-30" >
+            <ul class="menu-items m-t-30">
                 <li class="m-t-10">
-                    <span class="category ">基础</span>
+                    <span class="category ">文章管理</span>
                 </li>
                 <li>
                     <a href="">
-                        <span class="title">概述</span>
+                        <span class="title">我的文章</span>
                     </a>
                     <span class="icon-thumbnail "><i data-feather="list"></i></span>
                 </li>
                 <router-link tag="li" to="/account" activeClass="active">
                     <a href="#">
-                        <span class="title">账户信息</span>
+                        <span class="title">新文章</span>
                     </a>
                     <span class="icon-thumbnail "><i data-feather="list"></i></span>
                 </router-link>
                 <li class="">
                     <a href="#">
-                        <span class="title">我的钱包</span>
+                        <span class="title">修改文章</span>
                     </a>
                     <span class="icon-thumbnail "><i data-feather="list"></i></span>
                 </li>
-                <router-link tag="li" to="/certification" activeClass="active">
-                    <a href="#">
-                        <span class="title">实名认证</span>
-                    </a>
-                    <span class="icon-thumbnail "><i data-feather="list"></i></span>
-                </router-link>
                 <li class="m-t-10">
-                    <span class="category ">需求者</span>
+                    <span class="category ">分类管理</span>
                 </li>
 
-                <li class="">
+                <router-link tag="li" to="/category/list" activeClass="active">
                     <a href="#">
-                        <span class="title">我的需求</span>
+                        <span class="title">我的分类</span>
                     </a>
                     <span class="icon-thumbnail "><i data-feather="list"></i></span>
-                </li>
-                <router-link tag="li" to="/certification" activeClass="active">
+                </router-link>
+                <router-link tag="li" to="/category/create" activeClass="active">
                     <a href="#">
-                        <span class="title">相关文档</span>
+                        <span class="title">新分类</span>
+                    </a>
+                    <span class="icon-thumbnail "><i data-feather="list"></i></span>
+                </router-link>
+                <router-link tag="li" to="/category/update" activeClass="active">
+                    <a href="#">
+                        <span class="title">修改分类</span>
                     </a>
                     <span class="icon-thumbnail "><i data-feather="list"></i></span>
                 </router-link>
 
                 <li class="m-t-10">
-                    <span class="category ">开发者</span>
+                    <span class="category ">标签管理</span>
                 </li>
                 <li class="">
                     <a href="#">
-                        <span class="title">我的项目</span>
+                        <span class="title">我的标签</span>
                     </a>
                     <span class="icon-thumbnail "><i data-feather="list"></i></span>
                 </li>
                 <li class="">
                     <a href="#">
-                        <span class="title">技能展示</span>
+                        <span class="title">新标签</span>
                     </a>
                     <span class="icon-thumbnail "><i data-feather="list"></i></span>
                 </li>
                 <li class="">
                     <a href="#">
-                        <span class="title">补充信息</span>
+                        <span class="title">修改标签</span>
                     </a>
                     <span class="icon-thumbnail "><i data-feather="list"></i></span>
                 </li>
+                <li class="m-t-10">
+                    <span class="category ">评论管理</span>
+                </li>
                 <li class="">
                     <a href="#">
-                        <span class="title">保证金计划</span>
+                        <span class="title">审核评论</span>
                     </a>
                     <span class="icon-thumbnail "><i data-feather="list"></i></span>
                 </li>
@@ -98,7 +101,7 @@
     <!-- END SIDEBAR -->
 </template>
 <style>
-    .category{
+    .category {
         font-family: Arial, sans-serif;
         display: inline-block;
         padding-left: 15px;

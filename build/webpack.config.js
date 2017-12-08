@@ -31,14 +31,16 @@ module.exports = {
             'mod/modernizr': path.resolve(PluginsPath, 'modernizr-custom.js'),
             'mod/bootstrap': path.resolve(PluginsPath, 'bootstrap/js/bootstrap.js'),
             'mod/utils': path.resolve(PagesPath, 'js/utils.js'),
+            'mod/validate': path.resolve(PluginsPath, 'jquery-validation/js/jquery.validate'),
+            'mod/validateZh': path.resolve(PluginsPath, 'jquery-validation/js/localization/messages_zh.js'),
+            'mod/pagination': path.resolve(PluginsPath, 'jquery.pagination/jquery.pagination.js'),
+            'style/pagination': path.resolve(PluginsPath, 'jquery.pagination/pagination.css'),
             'style/bootstrap': path.resolve(PluginsPath, 'bootstrap/css/bootstrap.css'),
             'style/pace': path.resolve(PluginsPath, 'pace/pace-theme-flash.css'),
             'pages/pages-icons': path.resolve(PagesPath, 'css/pages-icons.css'),
             'pages/light': path.resolve(PagesPath, 'css/light.css'),
             'pages/pageJs': path.resolve(PagesPath, 'js/pages.js'),
             'pages/scriptsJs': path.resolve(PagesPath, 'js/scripts_alt.js'),
-            'mod/validate': path.resolve(PluginsPath, 'jquery-validation/js/jquery.validate'),
-            'mod/validateZh': path.resolve(PluginsPath, 'jquery-validation/js/localization/messages_zh.js')
         }
     },
     module: {

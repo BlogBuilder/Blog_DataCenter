@@ -1639,6 +1639,7 @@ body.menu-pin .overlay .overlay-brand {
 }
 .page-container .page-content-wrapper {
   min-height: 100%;
+  height: 100%;
   position: relative;
 }
 .page-container .page-content-wrapper .content {

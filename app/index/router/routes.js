@@ -1,7 +1,10 @@
 //路由映射
-import Certification from '../components/basic/certification.vue'
-import Account from '../components/basic/account.vue'
-var routes = [
+
+import Category from '../components/category/category.vue';
+import Category_List  from '../components/category/list.vue';
+import Category_Create  from '../components/category/create.vue';
+import Category_Update from '../components/category/update.vue';
+let routes = [
     // {
     //     path: "/nav1",
     //     name: "/nav1",
@@ -19,13 +22,19 @@ var routes = [
     //     }]
     // },
     {
-        path: "/account",
-        name: "/account",
-        component: Account
-    },{
-        path: "/certification",
-        name: "/certification",
-        component: Certification
+        path: "/category",
+        name: "category",
+        component: Category,
+        children: [{
+            path: "list",
+            component: Category_List
+        }, {
+            path: "create",
+            component: Category_Create
+        }, {
+            path: "update/:id",
+            component: Category_Update
+        }]
     }
 ];
 

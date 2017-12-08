@@ -10,14 +10,9 @@
             <!-- END MOBILE SIDEBAR TOGGLE -->
             <div class="">
                 <div class="brand inline">
-                    <img src="../assets/images/logo_blue.png" alt="logo" data-src="../assets/images/logo_blue.png"
-                         data-src-retina="../images/logo_blue_2x.png" width="78" height="22">
+                    <img src="../assets/images/logo_d2.png" alt="logo" width="200">
                 </div>
-                <a href="#" class="btn btn-primary  hidden-md-down" style="color: #ffffff!important;">创建需求</a>
-                <!--<div class="m-l-20 hidden-md-down">-->
-                    <!--<a href="javascript:;" class="btn btn-primary btn-cons">Primary</a>-->
-                <!--</div>-->
-                <a href="#" class="search-link hidden-md-down" data-toggle="search"><i class="pg-search"></i><span class="bold">搜索</span> 相关信息</a>
+                <a href="#" class="btn btn-primary  hidden-md-down" style="color: #ffffff!important;">发布文章</a>
             </div>
             <div class="d-flex align-items-center">
                 <!-- START NOTIFICATION LIST -->
@@ -53,7 +48,8 @@
                                                 </div>
                                                 <div class="more-details">
                                                     <div class="more-details-inner">
-                                                        <h5 class="semi-bold fs-16">“Apple’s Motivation - Innovation <br>
+                                                        <h5 class="semi-bold fs-16">
+                                                            “Apple’s Motivation - Innovation <br>
                                                             distinguishes between <br>
                                                             A leader and a follower.”</h5>
                                                         <p class="small hint-text">
@@ -185,7 +181,7 @@
         <!-- START PAGE CONTENT WRAPPER -->
         <div class="page-content-wrapper">
             <!-- START PAGE CONTENT -->
-            <div class="content">
+            <div class="content" style="height: 100%">
                 <transition>
                     <keep-alive>
                         <router-view></router-view>

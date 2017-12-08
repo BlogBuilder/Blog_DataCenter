@@ -19,10 +19,12 @@ import 'jquery-bez'
 import 'mod/iosList'
 import 'imagesloaded/imagesloaded.pkgd'
 import 'mod/jqueryActual'
+import 'mod/pagination'
 import 'jquery.scrollbar'
+import 'mod/validate'
+import 'mod/validateZh'
 import 'classie'
 import 'pages/pageJs'
-import 'pages/scriptsJs'
 import 'mod/utils'
 
 
@@ -40,7 +42,9 @@ import 'font-awesome/css/font-awesome.css'
 import 'jquery.scrollbar/jquery.scrollbar.css'
 import 'select2/dist/css/select2.css'
 import 'switchery/switchery.css'
+import 'style/pagination'
 import 'pages/pages-icons'
+import './style/icon-fonts.css'
 import 'pages/light'
 
 
@@ -71,10 +75,10 @@ $(document).on('click', '.sidebar-menu a', function (e) {
     if ($(this).parent().children('.sub-menu') === false) {
         return;
     }
-    var el = $(this);
-    var parent = $(this).parent().parent();
-    var li = $(this).parent();
-    var sub = $(this).parent().children('.sub-menu');
+    let el = $(this);
+    let parent = $(this).parent().parent();
+    let li = $(this).parent();
+    let sub = $(this).parent().children('.sub-menu');
 
     if (li.hasClass("open active")) {
         el.children('.arrow').removeClass("open active");
