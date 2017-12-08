@@ -16,8 +16,8 @@
                     </button>
                 </div>
                 <div class="input-group col-md-2">
-                    <input type="text" class="form-control" placeholder="关键字">
-                    <span class="input-group-addon">
+                    <input type="text" class="form-control" id="searchKey" @keyup.enter="_queryData" placeholder="关键字">
+                    <span class="input-group-addon" @click="_queryData">
                         <i class="fa fa-search"></i>
                         </span>
                 </div>
@@ -97,12 +97,13 @@
         methods: {
             _initTotal(){
                 let me = this;
-                me.condition = me.$route.query;
                 me._fetchData();
             },
             _fetchData(){
                 let me = this;
-                me.$http.get("/api/v1.0/admin/category/list/" + me.currentPage).then(response => {
+                me.$http.get("/api/v1.0/admin/category/list/" + me.currentPage, {
+                    params: me.condition
+                }).then(response => {
                     let data = response.data;
                     codeState(data.code, {
                         200(){
@@ -123,6 +124,16 @@
                     serviceError(response);
                 })
             },
+            _queryData(){
+                let me = this;
+                let key = $('#searchKey').val();
+                if (key) {
+                    me.condition = {
+                        key
+                    }
+                } else me.condition = {};
+                me._initTotal();
+            },
             _batchDestroy(){
                 let me = this;
                 if (me.selected.length === 0) {
@@ -130,7 +141,7 @@
                     return;
                 }
                 confirm("是否批量删除选中对象？", () => {
-                    me.$http.delete("/api/v1.0/admin/category/batchDestroy/"+me.selected).then(response => {
+                    me.$http.delete("/api/v1.0/admin/category/batchDestroy/" + me.selected).then(response => {
                         let data = response.data;
                         codeState(data.code, {
                             200(){
