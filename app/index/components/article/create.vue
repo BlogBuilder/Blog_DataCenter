@@ -23,7 +23,7 @@
                                         <div class="form-group  required">
                                             <label>文章类型</label>
                                             <select class="cs-select cs-skin-slide form-control" id="article_type"
-                                                    aria-required="true" data-init-plugin="select2">
+                                                    aria-required="true" data-init-plugin="select2" data-disable-search="true">
                                                 <option value="2">标准文章</option>
                                                 <option value="1">图集文章</option>
                                                 <option value="3">视频文章</option>
@@ -69,8 +69,20 @@
 
                                             </textarea>
                                         </div>
-
+                                        <div class="form-group  required">
+                                            <label>文章封面</label>
+                                            <textarea class="form-control" style="min-height: 100px"
+                                                      required aria-required="true" placeholder="多个地址使用“;”号隔开。">
+                                            </textarea>
+                                        </div>
+                                        <div class="m-t-10 m-b-10 pull-right">
+                                            <button class="btn btn-info" @click="_filterData">
+                                                上传
+                                            </button>
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </form>
+                                    <hr>
                                     <div class="m-t-20 text-right">
                                         <button class="btn btn-primary">提交</button>
                                     </div>
