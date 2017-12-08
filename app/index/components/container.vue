@@ -190,7 +190,7 @@
             </div>
             <!-- END PAGE CONTENT -->
             <!-- START FOOTER -->
-            <div class="container-fluid container-fixed-lg footer">
+            <div class="container-fluid container-fixed-lg footer" style="position: fixed;bottom: 0px">
                 <div class="copyright sm-text-center">
                     <p class="small no-margin pull-left sm-pull-reset">
                         <span class="hint-text">Copyright © 2014</span>

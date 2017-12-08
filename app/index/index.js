@@ -21,9 +21,14 @@ import 'imagesloaded/imagesloaded.pkgd'
 import 'mod/jqueryActual'
 import 'mod/pagination'
 import 'jquery.scrollbar'
+import 'bootstrap-select'
+import 'select2'
 import 'mod/validate'
 import 'mod/validateZh'
+import 'mod/sh_js'
+import 'mod/snippet'
 import 'classie'
+import wangEditor from 'wangeditor'
 import 'pages/pageJs'
 import 'mod/utils'
 
@@ -36,15 +41,19 @@ import quickView from './components/quickview.vue'
 import overlay from './components/overlay.vue'
 
 //==========导入CSS文件===============
+import './style/typo.css'
 import 'style/pace'
 import 'style/bootstrap'
 import 'font-awesome/css/font-awesome.css'
 import 'jquery.scrollbar/jquery.scrollbar.css'
 import 'select2/dist/css/select2.css'
+import 'bootstrap-select/dist/css/bootstrap-select.css'
 import 'switchery/switchery.css'
 import 'style/pagination'
 import 'pages/pages-icons'
 import './style/icon-fonts.css'
+import 'select2/dist/css/select2.css'
+import 'style/snippet'
 import 'pages/light'
 
 
@@ -56,6 +65,7 @@ Vue.config.debug = true;//开启错误提示
 Vue.use(VueResource);
 Vue.http.options.emulateJSON = true;
 
+window.wangEditor = wangEditor;
 
 //注册全局组件
 Vue.component('sidebar', sidebar);

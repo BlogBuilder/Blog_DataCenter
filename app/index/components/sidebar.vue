@@ -20,24 +20,24 @@
                 <li class="m-t-10">
                     <span class="category ">文章管理</span>
                 </li>
-                <li>
-                    <a href="">
+                <router-link tag="li" to="/article/list" activeClass="active">
+                    <a href="#">
                         <span class="title">我的文章</span>
                     </a>
                     <span class="icon-thumbnail "><i data-feather="list"></i></span>
-                </li>
-                <router-link tag="li" to="/account" activeClass="active">
+                </router-link>
+                <router-link tag="li" to="/article/create" activeClass="active">
                     <a href="#">
                         <span class="title">新文章</span>
                     </a>
                     <span class="icon-thumbnail "><i data-feather="list"></i></span>
                 </router-link>
-                <li class="">
+                <router-link tag="li" to="/article/update" activeClass="active">
                     <a href="#">
                         <span class="title">修改文章</span>
                     </a>
                     <span class="icon-thumbnail "><i data-feather="list"></i></span>
-                </li>
+                </router-link>
                 <li class="m-t-10">
                     <span class="category ">分类管理</span>
                 </li>
