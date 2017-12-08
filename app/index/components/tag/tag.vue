@@ -6,12 +6,12 @@
                 <div class="inner">
                     <!-- START BREADCRUMB -->
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">分类管理</a></li>
-                        <li class="breadcrumb-item active" v-if="$route.path.toLowerCase().indexOf('/list')!=-1">我的分类
+                        <li class="breadcrumb-item"><a href="#">标签管理</a></li>
+                        <li class="breadcrumb-item active" v-if="$route.path.toLowerCase().indexOf('/list')!=-1">我的标签
                         </li>
-                        <li class="breadcrumb-item active" v-if="$route.path.toLowerCase().indexOf('/create')!=-1">新分类
+                        <li class="breadcrumb-item active" v-if="$route.path.toLowerCase().indexOf('/create')!=-1">新标签
                         </li>
-                        <li class="breadcrumb-item active" v-if="$route.path.toLowerCase().indexOf('/update')!=-1">修改分类
+                        <li class="breadcrumb-item active" v-if="$route.path.toLowerCase().indexOf('/update')!=-1">修改标签
                         </li>
                     </ol>
                     <!-- END BREADCRUMB -->

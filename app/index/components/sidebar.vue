@@ -64,24 +64,25 @@
                 <li class="m-t-10">
                     <span class="category ">标签管理</span>
                 </li>
-                <li class="">
+                <router-link tag="li" to="/tag/list" activeClass="active">
                     <a href="#">
                         <span class="title">我的标签</span>
                     </a>
                     <span class="icon-thumbnail "><i data-feather="list"></i></span>
-                </li>
-                <li class="">
+                </router-link>
+                <router-link tag="li" to="/tag/create" activeClass="active">
                     <a href="#">
                         <span class="title">新标签</span>
                     </a>
                     <span class="icon-thumbnail "><i data-feather="list"></i></span>
-                </li>
-                <li class="">
+                </router-link>
+                <router-link tag="li" to="/tag/update" activeClass="active">
                     <a href="#">
                         <span class="title">修改标签</span>
                     </a>
                     <span class="icon-thumbnail "><i data-feather="list"></i></span>
-                </li>
+                </router-link>
+
                 <li class="m-t-10">
                     <span class="category ">评论管理</span>
                 </li>
