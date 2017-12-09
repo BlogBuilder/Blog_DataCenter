@@ -23,7 +23,8 @@
                                         <div class="form-group  required">
                                             <label>文章类型</label>
                                             <select class="cs-select cs-skin-slide form-control" id="article_type"
-                                                    aria-required="true" data-init-plugin="select2" data-disable-search="true">
+                                                    aria-required="true" data-init-plugin="select2"
+                                                    data-disable-search="true">
                                                 <option value="2">标准文章</option>
                                                 <option value="1">图集文章</option>
                                                 <option value="3">视频文章</option>
@@ -39,7 +40,8 @@
                                                  style="border:1px solid rgba(0, 0, 0, 0.07);min-height: 300px"></div>
                                         </div>
                                         <div class="m-t-10 m-b-10 pull-right">
-                                            <button class="btn btn-info" @click="_filterData">
+                                            <button class="btn btn-info" type="button" data-toggle="modal"
+                                                    data-target="#quoteModal">
                                                 引用
                                             </button>
                                         </div>
@@ -76,7 +78,7 @@
                                             </textarea>
                                         </div>
                                         <div class="m-t-10 m-b-10 pull-right">
-                                            <button class="btn btn-info" @click="_filterData">
+                                            <button class="btn btn-info">
                                                 上传
                                             </button>
                                         </div>
@@ -114,13 +116,13 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             <i class="pg-close fs-14"></i>
                         </button>
-                        <h5>引用 <span class="semi-bold">源码</span></h5>
-                        <p>源码将直接追加至编辑器中。</p>
+                        <h5>引用 <span class="semi-bold">地址</span></h5>
+                        <p>内容将直接追加至编辑器中。</p>
                     </div>
                     <div class="modal-body">
-                        <textarea class="form-control" id="quoteText" style="min-height: 100px"></textarea>
+                        <input type="text" class="form-control" placeholder="请输入网址" id="quoteText"/>
                         <div class="m-t-20 text-right">
-                            <button class="btn btn-primary">确定</button>
+                            <button class="btn btn-primary" @click="_quoteResource">确定</button>
                         </div>
                     </div>
                 </div>
@@ -141,7 +143,6 @@
     }
 </style>
 <script type="es6">
-
     module.exports = {
         data(){
             return {
@@ -157,13 +158,30 @@
             let me = this;
             me.editor = new wangEditor('#articleBar', '#articleContent');
             me.editor.customConfig.onchange = function (html) {
-                // 监控变化，同步更新到 textarea
                 me.article.content = html;
             };
             me.editor.customConfig.zIndex = 100;
             me.editor.customConfig.linkImgCallback = function (url) {
-                return me._uploadQiNiu(url);
+                let cdnUrl = "";
+                me.$http.post("/api/v1.0/admin/upload/uploadLinkFile", {
+                    url
+                }).then(respose => {
+                    let data = respose.data;
+                    codeState(data.code, {
+                        200(){
+                            cdnUrl = data.data.result;
+                        }
+                    });
+                }, response => {
+                    serviceError(response);
+                });
+                return cdnUrl;
             };
+            me.editor.customConfig.customUploadImg = function (files, insert) {
+
+                me.uploadInit(files[0]);
+            };
+            me.editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024
             me.editor.customConfig.pasteTextHandle = function (content) {
                 // content 即粘贴过来的内容（html 或 纯文本），可进行自定义处理然后返回
                 return content + '<p>在粘贴内容后面追加一行</p>'
@@ -208,22 +226,37 @@
                     serviceError(response);
                 })
             },
-            _filterData(){
+            _quoteResource(){
                 let me = this;
-                let data = me.editor.txt.html();
-                let imgReg = /<img.*?(?:>|\/>)/gi;
-                let srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
-                let arr = data.match(imgReg);
-                for (let i = 0; i < arr.length; i++) {
-                    let src = arr[i].match(srcReg);
-                    //此处上传七牛云
-                    data = data.replace(src[1], me._uploadQiNiu(src[1]));
-                }
-                me.editor.txt.html(data);
+                me.$http.get("/api/v1.0/admin/upload/fetchContent", {
+                    params: {
+                        id: $('#quoteText').val()
+                    }
+                }).then(response => {
+                    let data = response.data;
+                    codeState(data.code, {
+                        200(){
+                            me.editor.txt.html(data.data.result);
+                            $('#quoteModal').modal('hide');
+                        }
+                    });
+                }, response => {
+                    serviceError(response);
+                })
             },
-            _uploadQiNiu(src){
-                console.log(src);
-                return "https://cdn.qulongjun.cn/touxiang.jpg"
+            uploadInit(file) {
+                var formData = new FormData();
+                formData.append("filename", file);
+                $.ajax({
+                    type: "POST",
+                    url: "/api/v1.0/admin/file/uploadFIle",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        console.log(data);
+                    }
+                })
             }
         }
     }
