@@ -11,7 +11,7 @@
             <!-- START Background Caption-->
             <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
                 <h2 class="semi-bold text-white">
-                    落苏&mdash;博客后台管理系统</h2>
+                    落苏博客后台管理系统</h2>
                 <p class="small">
                     你懂的越多，懂你的越少。
                 </p>
@@ -22,10 +22,10 @@
         <!-- START Login Right Container-->
         <div class="login-container bg-white">
             <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
-                <img src="./assets/images/logo-dangGui.png" alt="logo" width="250" height="auto">
-                <p class="p-t-15">使用管理员账号登陆</p>
+                <img src="./assets/images/logo_new.png" alt="logo" width="250" height="auto">
+                <!--<p class="p-t-15">使用管理员账号登陆</p>-->
                 <!-- START Login Form -->
-                <form id="form-login" class="p-t-15" role="form" action="index.html">
+                <form id="form-login" class="p-t-15 m-t-50" role="form" action="index.html">
                     <!-- START Form Control-->
                     <div class="form-group form-group-default">
                         <label>用户名</label>
